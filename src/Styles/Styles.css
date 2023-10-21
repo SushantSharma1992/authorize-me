@@ -1,0 +1,74 @@
+html body {
+    color: aqua;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5rem;
+}
+
+.App {
+    --primary-color: aqua;
+    --toast-background: grey;
+    --font-color: white;
+}
+
+label {
+    font-size: .8rem;
+    text-decoration-line: underline;
+}
+
+.content {
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.flex-start {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    
+}
+.flex-column{
+    flex-direction: column;
+}
+.imageStyles {
+    size: 10px;
+    width: 2rem;
+    height: 2rem;
+}
+
+.CardComponent {
+    border-radius: 20px;
+    border: 1px solid var(--primary-color);
+    padding: 0 20px;
+    min-width: 300px;
+    width: 300px;
+}
+
+.centerElement{
+    position: absolute;
+    bottom: 10%;
+    right: 50%;
+    transform: translate(50%, 50%);
+}
+
+.grey-indicator-box {
+    background-color: var(--toast-background);
+    width: fit-content;
+    border-radius: 40px;
+    padding: 5px 15px;
+    font-size: .9rem;
+}
+.margin-small{
+    margin: 5px;
+}
+
+.tag-container{
+    margin: 5px 0;
+    overflow-x: hidden;
+}
+.tag-margin{
+    margin: 0 2px;
+}
