@@ -2,7 +2,7 @@ import React from "react";
 
 function Tags({ list }) {
   return (
-    <div className="flex-start tag-container">
+    <div className="flex-start tag-container customize-scrollbar">
       {list.map((tag) => (
         <span key={tag} className="grey-indicator-box tag-margin">{tag}</span>
       ))}

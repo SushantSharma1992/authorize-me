@@ -1,31 +1,25 @@
 import React from "react";
-import Password from "./Password";
-import Username from "./Username";
+import Menu from "../Menu";
 import Tags from "./Tags";
+import Username from "./Username";
+import Notes from "./Notes";
 
 const getServiceData = (url, name) => {
   return <a href={url}>{name}</a>;
 };
 
-function Card() {
-  const tagsList=['tag1','tag2','tag3',
-  'tag4',
-  'tag4',
-  'tag4',
-  'tag4',
-  'tag4',
-  'tag4',
-  'tag4',
-];
+function Card({ data }) {
   return (
     <div className="CardComponent">
-      {tagsList && <Tags list={tagsList}/>}
-      {/* <Username
-        label="Service"
-        content={getServiceData("https://google.com", "Google")}
-      /> */}
-      <Username label="Username" content="Username" />
-      <Username label="Password" content="password" />
+      <div className="paddingright">
+
+      <Username label="" content={getServiceData(data.url, data.service)} />
+      </div>
+      <Menu />
+      {data.tags && <Tags list={data.tags} />}
+      <Username label="Username" content={data.username} />
+      <Username label="Password" content={data.password} />
+      <Notes content={data.notes}/>
     </div>
   );
 }
