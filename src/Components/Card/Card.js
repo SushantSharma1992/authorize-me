@@ -1,8 +1,8 @@
 import React from "react";
-import Menu from "../Menu";
+import CardMenu from "./CardMenu";
+import Notes from "./Notes";
 import Tags from "./Tags";
 import Username from "./Username";
-import Notes from "./Notes";
 
 const getServiceData = (url, name) => {
   return <a href={url}>{name}</a>;
@@ -15,7 +15,7 @@ function Card({ data }) {
 
       <Username label="" content={getServiceData(data.url, data.service)} />
       </div>
-      <Menu />
+      <CardMenu />
       {data.tags && <Tags list={data.tags} />}
       <Username label="Username" content={data.username} />
       <Username label="Password" content={data.password} />

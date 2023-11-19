@@ -1,86 +1,80 @@
 {
-    "myCredentials":[
-       {
-          "id":1,
-          "service":"Google",
-          "url":"Https://Google.com",
-          "username":"abc",
-          "password":"xyz",
-          "tags":[
-             "1",
-             "2"
-          ],
-          "notes":"Some random notes loerm ipsom etc."
-       },
-       {
-          "id":2,
-          "service":"Google",
-          "url":"Https://Google.com",
-          "username":"abc",
-          "password":"xyz",
-          "tags":[
-             "1",
-             "2"
-          ],
-          "notes":"Some random notes loerm ipsom etc."
-       },
-       {
-          "id":3,
-          "service":"Google",
-          "url":"Https://Google.com",
-          "username":"abc",
-          "password":"xyz",
-          "tags":[
-             "1",
-             "2"
-          ],
-          "notes":"Some random notes loerm ipsom etc."
-       },
-       {
-          "id":4,
-          "service":"Google",
-          "url":"Https://Google.com",
-          "username":"abc",
-          "password":"xyz",
-          "tags":[
-             "1",
-             "2"
-          ],
-          "notes":"Some random notes loerm ipsom etc."
-       },
-       {
-          "id":5,
-          "service":"Google",
-          "url":"Https://Google.com",
-          "username":"abc",
-          "password":"xyz",
-          "tags":[
-             "1",
-             "2"
-          ],
-          "notes":"Some random notes loerm ipsom etc."
-       },
-       {
-          "id":6,
-          "service":"Google",
-          "url":"Https://Google.com",
-          "username":"abc",
-          "password":"xyz",
-          "tags":[
-             "1",
-             "2",
-             "tag1",
-             "tag2",
-             "tag3",
-             "tag4",
-             "tag5",
-             "tag6",
-             "tag7",
-             "tag8",
-             "tag9",
-             "tag10"
-          ],
-          "notes":"Some random notes loerm ipsom etc."
-       }
-    ]
- }
+  "myCredentials": [
+    {
+      "id": 1,
+      "service": "Google",
+      "url": "Https://Google.com",
+      "username": "abc",
+      "password": "xyz",
+      "tags": ["1", "2"],
+      "notes": "Some random notes loerm ipsom etc."
+    },
+    {
+      "id": 2,
+      "service": "Google",
+      "url": "Https://Google.com",
+      "username": "abc",
+      "password": "xyz",
+      "tags": ["1", "2"],
+      "notes": "Some random notes loerm ipsom etc."
+    },
+    {
+      "id": 3,
+      "service": "Google",
+      "url": "Https://Google.com",
+      "username": "abc",
+      "password": "xyz",
+      "tags": ["1", "2"],
+      "notes": "Some random notes loerm ipsom etc."
+    },
+    {
+      "id": 4,
+      "service": "Google",
+      "url": "Https://Google.com",
+      "username": "abc",
+      "password": "xyz",
+      "tags": ["1", "2"],
+      "notes": "Some random notes loerm ipsom etc."
+    },
+    {
+      "id": 5,
+      "service": "Google",
+      "url": "Https://Google.com",
+      "username": "abc",
+      "password": "xyz",
+      "tags": ["1", "2"],
+      "notes": "Some random notes loerm ipsom etc."
+    },
+    {
+      "id": 7,
+      "service": "EY",
+      "url": "Https://EY.com",
+      "username": "suahant.sharma18@yahoo.com",
+      "password": "nvidia",
+      "tags": ["1", "2"],
+      "notes": "Some random notes loerm ipsom etc."
+    },
+    {
+      "id": 6,
+      "service": "Google",
+      "url": "Https://Google.com",
+      "username": "abc",
+      "password": "xyz",
+      "tags": [
+        "1",
+        "2",
+        "tag1",
+        "tag2",
+        "tag3",
+        "tag4",
+        "tag5",
+        "tag6",
+        "tag7",
+        "tag8",
+        "tag9",
+        "tag10"
+      ],
+      "notes": "Some random notes loerm ipsom etc."
+    }
+  ]
+}

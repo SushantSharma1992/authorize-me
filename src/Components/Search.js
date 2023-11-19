@@ -1,13 +1,13 @@
 import React from "react";
 
-function Search() {
-  const searchCredentials = (e) => {
-    console.log(e.target.value);
-  };
+function Search({ findQuery }) {
   return (
-    <div>
-      <input className="searchInput" placeholder="Search" onChange={searchCredentials}></input>
-    </div>
+    <input
+      type="search"
+      className="headerItem searchInput"
+      placeholder="Search"
+      onChange={findQuery}
+    ></input>
   );
 }
 

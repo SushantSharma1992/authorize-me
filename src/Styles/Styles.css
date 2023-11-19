@@ -27,7 +27,8 @@ label {
     text-decoration-line: underline;
 }
 
-a:visited, a:link{
+a:visited,
+a:link {
     color: var(--primary-color);
 }
 
@@ -142,9 +143,12 @@ a:visited, a:link{
 /* Style the accordion panel. Note: hidden by default */
 .panel {
     padding: 0 18px;
-    background-color: white;
+    font-size: small;
+    border-left: 1px solid var(--primary-color);
+    border-right: 1px solid var(--primary-color);
     max-height: 0;
     overflow: hidden;
+    background-color: var(--bg);
     transition: max-height 0.2s ease-in-out;
     transition: min-height 0.2s ease-in-out;
 }
@@ -173,6 +177,7 @@ a:visited, a:link{
     border: 1px solid var(--primary-color);
     background-color: var(--bg);
     padding: .5rem;
+    z-index: 2;
 }
 
 .dropdownItem {
@@ -185,11 +190,55 @@ a:visited, a:link{
     display: block;
 }
 
-.searchInput{
-    border: 1px solid var(--primary-color);
+.headerItem {
     border-radius: .8rem;
     font-size: x-large;
     outline: none;
     padding: .5rem;
     margin: .5rem;
+    min-width: 100px;
+}
+
+.searchInput{
+    border: 1px solid var(--primary-color);
+    width: 112px;
+    flex:1
+}
+
+
+.search_result_item {
+    font-size: larger;
+    background-color: var(--primary-color-light);
+    padding: 0.5rem;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.headerContainer {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding-right: 50px;
+}
+
+/* .searchInnerContainer {
+    position: relative;
+    min-width: 350px;
+} */
+
+/* .searchResults {
+    border: 1px solid var(--primary-color);
+    border-radius: .8rem;
+    width: fit-content;
+    position: absolute;
+    background-color: var(--bg);
+    z-index: 2;
+    min-width: 382px;
+} */
+
+.flex_horizontal{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
 }
