@@ -7,6 +7,7 @@ export default function MenuItems({ options }) {
         return (
           <div key={item.name} className="dropdownItem" onClick={item.onClick}>
             {item.name}
+            {item.hiddenElement}
           </div>
         );
       })}

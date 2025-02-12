@@ -2,14 +2,7 @@ import React from "react";
 import Menu from "../Menu";
 import MenuItems from "../MenuItem";
 
-export default function CardMenu() {
-  const performOperation = (e) => {
-    console.log(e.target.textContent);
-  };
-  const options = [
-    { name: "Edit", onClick: performOperation },
-    { name: "Delete", onClick: performOperation },
-  ];
+export default function CardMenu({ options }) {
   return (
     <Menu>
       <MenuItems options={options} />

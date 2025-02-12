@@ -1,225 +1,248 @@
 html body {
-    color: aqua;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1.5rem;
+  color: aqua;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.5rem;
 }
 
 :root::-webkit-scrollbar {
-    height: .4rem;
-    background: var(--bg);
-
+  height: 0.4rem;
+  background: var(--bg);
 }
 
 :root:hover::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
+  background: var(--primary-color);
 }
 
 :root {
-    --primary-color: aqua;
-    --toast-background: grey;
-    --font-color: white;
-    --bg: #282c34;
-    --grid-size: 350px
+  --primary-color: aqua;
+  --toast-background: grey;
+  --font-color: white;
+  --bg: #282c34;
+  --grid-size: 350px;
+  --text-color: white;
+  --text-color-dark: black;
 }
 
 label {
-    font-size: .8rem;
-    text-decoration-line: underline;
+  font-size: 0.8rem;
+  text-decoration-line: underline;
 }
 
 a:visited,
 a:link {
-    color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .content {
-    padding: 5px 10px;
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
-    justify-content: space-between;
-    width: 100%;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .flex-start {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .flex-column {
-    flex-direction: column;
+  flex-direction: column;
+}
+
+.position-relative {
+  position: relative;
 }
 
 .paddingright {
-    padding-right: 3rem;
+  padding-right: 3rem;
 }
 
 .imageStyles {
-    size: 10px;
-    width: 2rem;
-    height: 2rem;
+  size: 10px;
+  width: 2rem;
+  height: 2rem;
+}
+
+.imageBorder {
+  border: 1px solid var(--text-color);
+  border-radius: 50%;
+  display: flex;
+  width: 2rem;
+  height: 2rem;
 }
 
 .menu-component {
-    position: absolute;
-    top: .2rem;
-    right: .8rem;
+  display: block;
+  width: fit-content;
+  margin: auto;
+  padding: 0.5rem;
 }
 
 .CardComponent {
-    position: relative;
-    border-radius: 20px;
-    border: 1px solid var(--primary-color);
-    padding: 0 20px;
-    min-width: 300px;
-    height: fit-content;
+  position: relative;
+  border-radius: 20px;
+  border: 1px solid var(--primary-color);
+  padding: 0 20px;
+  min-width: 200px;
+  height: fit-content;
 }
 
 .centerElement {
-    position: fixed;
-    top: 90dvh;
-    right: 50%;
-    transform: translate(50%, 50%);
+  position: fixed;
+  top: 86dvh;
+  right: 50%;
+  transform: translate(50%, 50%);
 }
 
 .grey-indicator-box {
-    background-color: var(--toast-background);
-    width: fit-content;
-    border-radius: 40px;
-    padding: 5px 15px;
-    font-size: .9rem;
+  background-color: var(--toast-background);
+  width: fit-content;
+  border-radius: 40px;
+  padding: 5px 15px;
+  font-size: 0.9rem;
 }
 
 .margin-small {
-    margin: 5px;
+  margin: 5px;
 }
 
 .tag-container {
-    margin: 5px 0;
-    overflow-x: scroll;
-    white-space: nowrap;
+  margin: 5px 0;
+  overflow-x: scroll;
+  white-space: nowrap;
 }
 
 .customize-scrollbar::-webkit-scrollbar {
-    height: .4rem;
-    background: var(--bg);
+  height: 0.4rem;
+  background: var(--bg);
 }
 
 .customize-scrollbar:hover::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
+  background: var(--primary-color);
 }
 
 .tag-margin {
-    margin: 0 2px;
+  margin: 0 2px;
 }
 
 .credential-container {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  padding: 1rem 1rem 5rem;
 }
 
 .accordion {
-    background-color: var(--toast-background);
-    color: var(--font-color);
-    cursor: pointer;
-    padding: .3rem;
-    width: 100%;
-    text-align: left;
-    border: none;
-    outline: none;
-    transition: 0.4s;
-    border-radius: 1rem 1rem 0 0;
+  background-color: var(--toast-background);
+  color: var(--font-color);
+  cursor: pointer;
+  padding: 0.3rem;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  border-radius: 1rem 1rem 0 0;
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active,
 .accordion:hover {
-    background-color: #ccc;
+  background-color: #ccc;
 }
 
 /* Style the accordion panel. Note: hidden by default */
 .panel {
-    padding: 0 18px;
-    font-size: small;
-    border-left: 1px solid var(--primary-color);
-    border-right: 1px solid var(--primary-color);
-    max-height: 0;
-    overflow: hidden;
-    background-color: var(--bg);
-    transition: max-height 0.2s ease-in-out;
-    transition: min-height 0.2s ease-in-out;
+  padding: 0 18px;
+  font-size: small;
+  border-left: 1px solid var(--primary-color);
+  border-right: 1px solid var(--primary-color);
+  max-height: 0;
+  overflow: hidden;
+  background-color: var(--bg);
+  transition: max-height 0.2s ease-in-out;
+  transition: min-height 0.2s ease-in-out;
 }
 
-
 .displayNone {
-    max-height: 0;
-    transition: max-height 0.2s ease-in-out;
+  max-height: 0;
+  transition: max-height 0.2s ease-in-out;
 }
 
 .displayBlock {
-    max-height: 200px;
-    transition: max-height 0.2s ease-in-out;
+  max-height: 200px;
+  transition: max-height 0.2s ease-in-out;
 }
 
-
 .dropdownContainer {
-    position: relative;
+  position: relative;
 }
 
 .dropdownPanel {
-    display: none;
-    position: absolute;
-    width: max-content;
-    right: 0;
-    border: 1px solid var(--primary-color);
-    background-color: var(--bg);
-    padding: .5rem;
-    z-index: 2;
+  display: none;
+  position: absolute;
+  width: max-content;
+  border: 1px solid var(--primary-color);
+  background-color: var(--bg);
+  padding: 0.5rem;
+  z-index: 2;
 }
 
 .dropdownItem {
-    width: 100%;
-    text-align: start;
-    user-select: none;
+  width: 100%;
+  text-align: start;
+  user-select: none;
 }
 
 .openDropdown {
-    display: block;
+  display: block;
+  right: 0;
+}
+
+.openDropUp {
+  display: block;
+  right: 0;
+  bottom: 38px;
+}
+
+.text_container {
+  overflow-x: scroll;
+  scrollbar-width: none;
 }
 
 .headerItem {
-    border-radius: .8rem;
-    font-size: x-large;
-    outline: none;
-    padding: .5rem;
-    margin: .5rem;
-    min-width: 100px;
+  border-radius: 0.8rem;
+  font-size: x-large;
+  outline: none;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  min-width: 100px;
 }
 
-.searchInput{
-    border: 1px solid var(--primary-color);
-    width: 112px;
-    flex:1
+.searchInput {
+  border: 1px solid var(--primary-color);
+  width: 112px;
+  flex: 1;
 }
-
 
 .search_result_item {
-    font-size: larger;
-    background-color: var(--primary-color-light);
-    padding: 0.5rem;
-    border-radius: 1rem;
-    cursor: pointer;
+  font-size: larger;
+  background-color: var(--primary-color-light);
+  padding: 0.5rem;
+  border-radius: 1rem;
+  cursor: pointer;
 }
 
 .headerContainer {
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    padding-right: 50px;
+  position: fixed;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: var(--text-color-dark);
 }
 
 /* .searchInnerContainer {
@@ -237,8 +260,37 @@ a:link {
     min-width: 382px;
 } */
 
-.flex_horizontal{
-    display: flex;
-    flex-direction: row;
-    flex-grow: 1;
+.flex_horizontal {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+.tags_container {
+  flex: 1;
+}
+
+.full_width {
+  width: 100%;
+}
+
+.closeButton {
+  position: fixed;
+  top: 0;
+  right: 0;
+  color: white;
+  padding: 1.5rem;
+  font-size: 2rem;
+}
+
+.modal_container{
+
+}
+
+dialog::backdrop{
+  background-color: #282c34;
+}
+
+.hidden {
+  display: none;
 }

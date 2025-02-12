@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { ReactComponent as MenuLogo } from "../Assets/menu-icon.svg";
+import { FiMoreVertical } from "react-icons/fi";
 
-function Menu({ children }) {
+function Menu({ dropUp, children }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -15,8 +16,14 @@ function Menu({ children }) {
       }}
     >
       <div tabIndex={0} className="dropdownContainer">
-        <MenuLogo className="imageStyles" />
-        <div className={`dropdownPanel ${open ? "openDropdown" : ""}`}>
+        <div className="imageBorder">
+          <FiMoreVertical className="imageStyles" />
+        </div>
+        <div
+          className={`dropdownPanel ${
+            open ? (dropUp ? "openDropUp" : "openDropdown") : ""
+          }`}
+        >
           {children}
         </div>
       </div>
