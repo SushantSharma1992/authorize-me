@@ -20,7 +20,7 @@ const Modal = ({ isOpen, onClose, children }) => {
 
   return (
     <div className="modal_container">
-      <dialog ref={dialogRef}>
+      <dialog ref={dialogRef} className="modal_styles">
         <div className="closeButton" onClick={onClose}>
           <IoCloseCircleOutline />
         </div>

@@ -1,23 +1,20 @@
 import React, { useContext, useState } from "react";
 import Card from "../Components/Card/Card";
+import Modal from "../Components/Modal";
 import Search from "../Components/Search";
-import SettingsMenu from "../Components/SettingsMenu";
 import Toast from "../Components/Toast";
 import { AppContext } from "../GlobalStore/Context";
+import { obj } from "../Utilities/Constants";
 import useSearch from "../Utilities/useSearch";
 import AddItem from "./AddItem";
-import Modal from "../Components/Modal";
 import AddItemForm from "./AddItemForm";
-import { obj } from "../Utilities/Constants";
-import useModifyCred from "../Utilities/useModifyCred";
+import Settings from "./Settings";
 
 function Home() {
   const { showToast } = useContext(AppContext);
   const [searchResults, findQuery] = useSearch();
   const [openForm, setOpenForm] = useState();
   const [editCred, setEditCred] = useState(obj);
-
-
 
   const toggleForm = () => {
     setOpenForm((prev) => !prev);
@@ -28,12 +25,10 @@ function Home() {
     setEditCred(item);
   };
 
-
-
   return (
     <div className="home-container">
       <Modal isOpen={openForm} onClose={toggleForm}>
-        <AddItemForm formObj={editCred} />
+        <AddItemForm item={editCred} editItem={setEditCred}/>
       </Modal>
       <div className="credential-container">
         {searchResults.map((cred) => {
@@ -44,8 +39,12 @@ function Home() {
       <div className="headerContainer full_width">
         <div className="flex_horizontal">
           <Search findQuery={findQuery} />
-          <AddItem openForm={openForm} handleClick={toggleForm} />
-          <SettingsMenu />
+          <AddItem
+            handleClick={() => {
+              editItem(obj);
+            }}
+          />
+          <Settings/>
         </div>
       </div>
     </div>

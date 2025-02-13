@@ -15,7 +15,7 @@ const useModifyCred = () => {
     setCredentials((prevState) => {
       const newArray = Array.of(...prevState);
       const index = newArray.findIndex((value) => value.id === newItem.id);
-      if (index > 0) {
+      if (index !== -1) {
         newArray[index] = newItem;
       }
       return newArray;

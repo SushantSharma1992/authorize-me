@@ -1,18 +1,24 @@
-import React, { useState } from "react";
-import { obj } from "../Utilities/Constants";
+import React, { useEffect } from "react";
 import useModifyCred from "../Utilities/useModifyCred";
+import { obj } from "../Utilities/Constants";
 
-const AddItemForm = ({ formObj }) => {
-  const [item, setItem] = useState(formObj);
+const AddItemForm = ({ item, editItem }) => {
+  useEffect(() => {
+    if (!item.id) {
+      resetValues();
+    }
+  }, [item]);
+
   const { editCred } = useModifyCred();
 
-  const getType = (value) => typeof value;
+  const getType = (value) => (value === "password" ? "password" : typeof value);
 
   const resetValues = () => {
+    editItem(obj);
     document.getElementById("addCredForm-id").reset();
     document.getElementById("service-input").focus();
-    // setItem(obj);
   };
+
   const getObject = (target) => {
     const element = [];
     const tags = [];
@@ -38,8 +44,8 @@ const AddItemForm = ({ formObj }) => {
     e.preventDefault();
     if (e.target[1].value) {
       const data = getObject(e.target);
-      console.log({ data });
-      editCred(data);
+      const result = { ...item, ...data };
+      editCred(result);
       resetValues();
     }
   };
@@ -61,10 +67,11 @@ const AddItemForm = ({ formObj }) => {
             return <></>;
           }
           return (
-            <div key={`${key}-id`}>
-              <label className="label">{key} : </label>
+            <div key={`${key}-id`} className="flex-start flex-column padding-md">
+              <label className="label">{key.toUpperCase()}</label>
               <input
                 id={`${key}-input`}
+                className="input_class padding-md"
                 placeholder={key}
                 name={key}
                 type={getType(value)}
@@ -73,7 +80,7 @@ const AddItemForm = ({ formObj }) => {
             </div>
           );
         })}
-        <button type="submit">Save</button>
+        <button className="button_primary full-width" type="submit">Save</button>
       </form>
     </div>
   );

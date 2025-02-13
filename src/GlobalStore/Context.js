@@ -6,9 +6,6 @@ let loadCredentials = JSON.parse(localStorage.getItem(SavedData.credentials));
 if (!loadCredentials || loadCredentials?.length === 0) {
   loadCredentials = mockData.myCredentials;
 }
-
-console.log({ loadCredentials });
-
 export const AppContext = createContext();
 
 const Context = ({ children }) => {

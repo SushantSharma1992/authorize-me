@@ -1,9 +1,6 @@
 import React from "react";
-import AddItemForm from "./AddItemForm";
-import Modal from "../Components/Modal";
-import { obj } from "../Utilities/Constants";
 
-const AddItem = ({ openForm, handleClick }) => {
+const AddItem = ({ handleClick }) => {
   return (
     <div>
       <button

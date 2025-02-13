@@ -13,14 +13,18 @@ function Username({ label, content }) {
   };
   return (
     <div className="flex-start flex-column">
-      <label>{label.toUpperCase()}</label>
+      <label className="card_label">{label.toUpperCase()}</label>
       <div
         className="content"
         onClick={() => {
           copyContent(content);
         }}
       >
-        <div className="text_container">{content}</div>
+        {label === "Password" ? (
+          <input type="password" readOnly value={content}></input>
+        ) : (
+          <div className="text_container">{content}</div>
+        )}
         <CopyImage className="imageStyles" />
       </div>
     </div>

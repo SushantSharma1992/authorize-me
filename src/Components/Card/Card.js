@@ -6,7 +6,7 @@ import Username from "./Username";
 import useModifyCred from "../../Utilities/useModifyCred";
 
 const getServiceData = (url, name) => {
-  return <a href={url}>{name}</a>;
+  return <a target="_blank" href={url}>{name}</a>;
 };
 
 function Card({ data, editItem }) {

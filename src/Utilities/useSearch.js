@@ -1,10 +1,15 @@
 import Fuse from "fuse.js";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../GlobalStore/Context";
 
 export default function useSearch() {
   const { credentials } = useContext(AppContext);
   const [searchResults, setSearchResults] = useState(credentials);
+
+  useEffect(() => {
+    setSearchResults(credentials);
+  }, [credentials]);
+
   let fuse;
   const keys2Search = ["service", "username", "password"];
   const options = {
