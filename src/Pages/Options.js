@@ -4,12 +4,14 @@ import OptionItem from "./OptionItem";
 import { SavedData } from "../Utilities/Constants";
 import { AppContext } from "../GlobalStore/Context";
 import { mergeProductList } from "../Utilities/Utilities";
+import useModifyCred from "../Utilities/CustomHooks/useModifyCred";
 
 export default function Options() {
   const [downloadUrl, setDownloadUrl] = useState();
   const downloadButton = useRef();
   const importButton = useRef();
-  const { credentials, setCredentials } = useContext(AppContext);
+  const { credentials } = useContext(AppContext);
+  const { loadCredentials, clearCredentials } = useModifyCred();
   let fileDownloadURL;
 
   useEffect(() => {
@@ -37,7 +39,7 @@ export default function Options() {
       // Don't trust the fileContents!
       // Test any assumptions about its contents!
       const fileContents = e.target.result;
-      setCredentials(mergeProductList(credentials, JSON.parse(fileContents)));
+      loadCredentials(mergeProductList(credentials, JSON.parse(fileContents)));
     };
 
     // The fileloaded event handler is triggered when the read completes
@@ -87,9 +89,7 @@ export default function Options() {
       description: "Delete Data",
       image: <BsFiletypeJson className="option_image" />,
       hiddenElement: <></>,
-      onClick: () => {
-        setCredentials([]);
-      },
+      onClick: clearCredentials,
     },
   ];
 

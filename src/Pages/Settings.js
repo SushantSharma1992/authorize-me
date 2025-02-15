@@ -7,9 +7,9 @@ const Settings = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div>
+    <div className="margin-auto">
       <div
-        className="padding-md"
+        className="padding-md flex_horizontal"
         onClick={() => {
           setIsOpen(true);
         }}

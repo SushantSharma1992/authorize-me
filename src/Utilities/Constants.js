@@ -18,3 +18,8 @@ export const sampleobj = {
 export const SavedData = {
   credentials: "credentials",
 };
+
+export const defaultNotification = {
+  text: "",
+  timeout: 2000,
+};

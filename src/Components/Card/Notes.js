@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import Tags from "./Tags";
 
-export default function Notes({ content }) {
+export default function Notes({ content, tags }) {
   const [open, setOpen] = useState(false);
   const toggle = () => {
     setOpen((prev) => !prev);
@@ -12,7 +13,10 @@ export default function Notes({ content }) {
         Notes
       </button>
       <div className={`panel ${open ? "displayBlock" : "displayNone"}`}>
-        <p>{content}</p>
+        <div>
+          <p>{content}</p>
+        </div>
+        {tags && <Tags list={tags} />}
       </div>
     </>
   );

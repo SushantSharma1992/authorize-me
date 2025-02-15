@@ -1,17 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Card from "../Components/Card/Card";
 import Modal from "../Components/Modal";
 import Search from "../Components/Search";
 import Toast from "../Components/Toast";
-import { AppContext } from "../GlobalStore/Context";
 import { obj } from "../Utilities/Constants";
-import useSearch from "../Utilities/useSearch";
+import useSearch from "../Utilities/CustomHooks/useSearch";
 import AddItem from "./AddItem";
 import AddItemForm from "./AddItemForm";
 import Settings from "./Settings";
 
 function Home() {
-  const { showToast } = useContext(AppContext);
   const [searchResults, findQuery] = useSearch();
   const [openForm, setOpenForm] = useState();
   const [editCred, setEditCred] = useState(obj);
@@ -28,13 +26,13 @@ function Home() {
   return (
     <div className="home-container">
       <Modal isOpen={openForm} onClose={toggleForm}>
-        <AddItemForm item={editCred} editItem={setEditCred}/>
+        <AddItemForm item={editCred} editItem={setEditCred} />
       </Modal>
       <div className="credential-container">
         {searchResults.map((cred) => {
           return <Card key={cred.id} data={cred} editItem={editItem} />;
         })}
-        {showToast && <Toast content="Copied!" />}
+        <Toast />
       </div>
       <div className="headerContainer full_width">
         <div className="flex_horizontal">
@@ -44,7 +42,7 @@ function Home() {
               editItem(obj);
             }}
           />
-          <Settings/>
+          <Settings />
         </div>
       </div>
     </div>

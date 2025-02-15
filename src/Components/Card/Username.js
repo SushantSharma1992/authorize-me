@@ -1,18 +1,16 @@
-import React, { useContext } from "react";
-import { ReactComponent as CopyImage } from "../../Assets/copy.svg";
-import { AppContext } from "../../GlobalStore/Context";
+import React from "react";
+import useToastNotification from "../../Utilities/CustomHooks/useToastNotification";
+import PasswordField from "./PasswordField";
 
 function Username({ label, content }) {
-  const { setShowToast } = useContext(AppContext);
+  const { notify } = useToastNotification();
+
   const copyContent = (value) => {
     navigator.clipboard.writeText(value);
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 2000);
+    notify("Copied !!");
   };
   return (
-    <div className="flex-start flex-column">
+    <div className="flex-start flex-column flex-1">
       <label className="card_label">{label.toUpperCase()}</label>
       <div
         className="content"
@@ -21,11 +19,10 @@ function Username({ label, content }) {
         }}
       >
         {label === "Password" ? (
-          <input type="password" readOnly value={content}></input>
+          <PasswordField content={content} />
         ) : (
           <div className="text_container">{content}</div>
         )}
-        <CopyImage className="imageStyles" />
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import useModifyCred from "../Utilities/useModifyCred";
+import useModifyCred from "../Utilities/CustomHooks/useModifyCred";
 import { obj } from "../Utilities/Constants";
 
 const AddItemForm = ({ item, editItem }) => {
@@ -64,10 +64,13 @@ const AddItemForm = ({ item, editItem }) => {
       <form id="addCredForm-id" onSubmit={onSubmit}>
         {Object.entries(item).map(([key, value]) => {
           if (getType(value) === "object" || isKeyAllowed(key)) {
-            return <></>;
+            return null;
           }
           return (
-            <div key={`${key}-id`} className="flex-start flex-column padding-md">
+            <div
+              key={`${key}-id`}
+              className="flex-start flex-column padding-md"
+            >
               <label className="label">{key.toUpperCase()}</label>
               <input
                 id={`${key}-input`}
@@ -80,7 +83,9 @@ const AddItemForm = ({ item, editItem }) => {
             </div>
           );
         })}
-        <button className="button_primary full-width" type="submit">Save</button>
+        <button className="button_primary full-width" type="submit">
+          Save
+        </button>
       </form>
     </div>
   );

@@ -1,7 +1,7 @@
 html body {
   color: aqua;
   font-family: "Roboto";
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 :root::-webkit-scrollbar {
@@ -25,20 +25,25 @@ html body {
   --bg: #282c34;
   --toast-background: grey;
   --grid-size: 350px;
-  --text-color: #FDFFFC;
+  --text-color: #fdfffc;
   --text-color-dark: black;
+  --z-level-1001: 1001;
 }
 
 label {
   font-size: 0.8rem;
 }
 .card_label {
-  text-decoration-line: underline;
+  font-size: 0.6rem;
 }
 
 a:visited,
 a:link {
   color: var(--primary-color);
+}
+
+.font-xl {
+  font-size: 1.5rem;
 }
 
 .content {
@@ -94,6 +99,10 @@ a:link {
   padding: 0.5rem;
 }
 
+.margin-auto {
+  margin: auto;
+}
+
 .CardComponent {
   position: relative;
   border-radius: var(--border-curve);
@@ -116,6 +125,7 @@ a:link {
   border-radius: 40px;
   padding: 5px 15px;
   font-size: 0.9rem;
+  z-index: var(--z-level-1001);
 }
 
 .margin-small {
@@ -277,15 +287,37 @@ a:link {
   display: flex;
   flex-direction: row;
   flex-grow: 1;
-  align-items: center;
 }
 
-.tags_container {
+.align_right {
+  align-items: flex-end;
+}
+
+.pushLeft {
+  margin-left: -32px;
+}
+
+.flex-1 {
   flex: 1;
 }
 
 .full_width {
   width: 100%;
+}
+
+.fill-available-width {
+  width: -moz-available;
+  width: -webkit-fill-available;
+}
+
+.password-container {
+  all: unset;
+}
+
+#passwordField-id {
+  width: -moz-available;
+  width: -webkit-fill-available;
+  text-align: start;
 }
 
 .closeButton {

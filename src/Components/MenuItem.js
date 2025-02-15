@@ -5,9 +5,8 @@ export default function MenuItems({ options }) {
     <>
       {options.map((item) => {
         return (
-          <div key={item.name} className="dropdownItem" onClick={item.onClick}>
+          <div key={item.name} className="dropdownItem font-xl" onClick={item.onClick}>
             {item.name}
-            {item.hiddenElement}
           </div>
         );
       })}

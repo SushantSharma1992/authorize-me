@@ -1,6 +1,6 @@
 import Fuse from "fuse.js";
 import { useContext, useEffect, useState } from "react";
-import { AppContext } from "../GlobalStore/Context";
+import { AppContext } from "../../GlobalStore/Context";
 
 export default function useSearch() {
   const { credentials } = useContext(AppContext);
@@ -24,7 +24,6 @@ export default function useSearch() {
     searchFuseOutput.forEach((element) => {
       searchResult.push(element.item);
     });
-    console.log({ searchFuseOutput });
     return searchResult;
   };
 

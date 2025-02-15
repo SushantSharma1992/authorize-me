@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IoCloseCircleOutline } from "react-icons/io5";
+import Toast from "./Toast";
 
 const Modal = ({ isOpen, onClose, children }) => {
   const dialogRef = useRef();
@@ -25,6 +26,7 @@ const Modal = ({ isOpen, onClose, children }) => {
           <IoCloseCircleOutline />
         </div>
         <div className="modal_child_container">{children}</div>
+        <Toast />
       </dialog>
     </div>
   );

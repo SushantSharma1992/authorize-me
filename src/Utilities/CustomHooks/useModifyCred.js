@@ -1,14 +1,16 @@
 import React, { useContext } from "react";
-import { AppContext } from "../GlobalStore/Context";
+import { AppContext } from "../../GlobalStore/Context";
+import useToastNotification from "./useToastNotification";
 
 const useModifyCred = () => {
   const { credentials, setCredentials } = useContext(AppContext);
-
+  const { notify } = useToastNotification();
   const deleteItem = (item) => {
-    const clonedArray = Array.of(...credentials);
-    const index = clonedArray.findIndex((o) => o.id === item.id);
-    clonedArray.splice(index, 1);
+    const clonedArray = Array.of(...credentials).filter(
+      (o) => o.id === item.id
+    );
     setCredentials(clonedArray);
+    notify(`${item.service} deleted`);
   };
 
   const updateCred = (newItem) => {
@@ -27,6 +29,7 @@ const useModifyCred = () => {
     if (data.id) {
       newItem = { ...data, updateOn: new Date() };
       updateCred(newItem);
+      notify(`${data.service} updated.`);
     } else {
       const prevId = credentials[credentials.length - 1]?.id || 0;
       newItem = {
@@ -36,10 +39,20 @@ const useModifyCred = () => {
         ...data,
       };
       setCredentials((prevState) => [...prevState, newItem]);
+      notify(`Saved`);
     }
   };
 
-  return { deleteItem, editCred };
+  const loadCredentials = (array) => {
+    setCredentials(array);
+    notify("Data Loaded.");
+  };
+  const clearCredentials = () => {
+    setCredentials([]);
+    notify("Data Cleared");
+  };
+
+  return { deleteItem, editCred, clearCredentials, loadCredentials };
 };
 
 export default useModifyCred;
