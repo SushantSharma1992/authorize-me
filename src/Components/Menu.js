@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { ReactComponent as MenuLogo } from "../Assets/menu-icon.svg";
 import { FiMoreVertical } from "react-icons/fi";
 
 function Menu({ dropUp, children }) {

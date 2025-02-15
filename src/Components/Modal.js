@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import Toast from "./Toast";
 
 const Modal = ({ isOpen, onClose, children }) => {
   const dialogRef = useRef();
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
     isOpen ? openDialog() : closeDialog();
@@ -12,11 +11,9 @@ const Modal = ({ isOpen, onClose, children }) => {
 
   const openDialog = () => {
     dialogRef.current.showModal();
-    setIsDialogOpen(dialogRef.current.open);
   };
   const closeDialog = () => {
     dialogRef.current.close();
-    setIsDialogOpen(dialogRef.current.open);
   };
 
   return (

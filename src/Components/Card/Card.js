@@ -1,13 +1,12 @@
 import React from "react";
+import useModifyCred from "../../Utilities/CustomHooks/useModifyCred";
 import CardMenu from "./CardMenu";
 import Notes from "./Notes";
-import Tags from "./Tags";
 import Username from "./Username";
-import useModifyCred from "../../Utilities/CustomHooks/useModifyCred";
 
 const getServiceData = (url, name) => {
   return url ? (
-    <a target="_blank" href={url}>
+    <a target="_blank" rel="noreferrer" href={url}>
       {name}
     </a>
   ) : (

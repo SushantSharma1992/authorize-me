@@ -50,14 +50,12 @@ const AddItemForm = ({ item, editItem }) => {
     }
   };
 
-  const isKeyAllowed = (key) => {
-    let isAllowed = false;
-    const removeKyes = ["id", "createdOn", "updateOn"];
-    removeKyes.forEach((element) => {
-      isAllowed = isAllowed || key === element;
-    });
-    return isAllowed;
-  };
+  const requiredFields = ["service", "username", "password"];
+  const removeKyes = ["id", "createdOn", "updateOn"];
+
+  const isRequired = (name) => requiredFields.includes(name);
+
+  const isKeyAllowed = (key) => removeKyes.includes(key);
 
   return (
     <div>
@@ -79,6 +77,7 @@ const AddItemForm = ({ item, editItem }) => {
                 name={key}
                 type={getType(value)}
                 defaultValue={value}
+                required={isRequired(key)}
               />
             </div>
           );
