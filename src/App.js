@@ -5,12 +5,10 @@ import "./Styles/Styles.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Context>
-          <Home />
-        </Context>
-      </header>
+    <div className="App App-header">
+      <Context>
+        <Home />
+      </Context>
     </div>
   );
 }

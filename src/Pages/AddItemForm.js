@@ -69,10 +69,10 @@ const AddItemForm = ({ item, editItem }) => {
               key={`${key}-id`}
               className="flex-start flex-column padding-md"
             >
-              <label className="label">{key.toUpperCase()}</label>
+              <label className="font-m">{key.toUpperCase()}</label>
               <input
                 id={`${key}-input`}
-                className="input_class padding-md"
+                className="input_class padding-md font-xl"
                 placeholder={key}
                 name={key}
                 type={getType(value)}
@@ -82,7 +82,7 @@ const AddItemForm = ({ item, editItem }) => {
             </div>
           );
         })}
-        <button className="button_primary full-width" type="submit">
+        <button className="button_primary full-width font-xl" type="submit">
           Save
         </button>
       </form>

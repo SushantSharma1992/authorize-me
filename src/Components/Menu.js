@@ -15,8 +15,8 @@ function Menu({ dropUp, children }) {
       }}
     >
       <div tabIndex={0} className="dropdownContainer">
-        <div className="imageBorder">
-          <FiMoreVertical className="imageStyles" />
+        <div className="imageBorder image_dimentions">
+          <FiMoreVertical className="imageStyles image_dimentions" />
         </div>
         <div
           className={`dropdownPanel ${

@@ -6,7 +6,7 @@ const useModifyCred = () => {
   const { credentials, setCredentials } = useContext(AppContext);
   const { notify } = useToastNotification();
   const deleteItem = (item) => {
-    setCredentials(Array.of(...credentials).filter((o) => o.id === item.id));
+    setCredentials(Array.of(...credentials).filter((o) => o.id !== item.id));
     notify(`${item.service} deleted`);
   };
 

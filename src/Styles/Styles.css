@@ -1,7 +1,7 @@
 html body {
   color: aqua;
   font-family: "Roboto";
-  font-size: 2rem;
+  font-size: clamp(0.4rem, calc(2vw + 0.5rem), 2rem);
 }
 
 :root::-webkit-scrollbar {
@@ -28,11 +28,9 @@ html body {
   --text-color: #fdfffc;
   --text-color-dark: black;
   --z-level-1001: 1001;
+  --min-width: min(200px, 2%);
 }
 
-label {
-  font-size: 0.8rem;
-}
 .card_label {
   font-size: 0.6rem;
 }
@@ -42,12 +40,15 @@ a:link {
   color: var(--primary-color);
 }
 
+.font-m{
+  font-size: clamp(0.4rem, calc(0.9vw + .5rem), 1rem);
+}
 .font-xl {
-  font-size: 1.5rem;
+  font-size: clamp(0.4rem, calc(1vw + 1rem), 2rem);
 }
 
 .content {
-  padding: 5px 10px;
+  padding: min(5px, 1%) min(10px, 2%);
   display: flex;
   align-items: center;
   flex-grow: 1;
@@ -78,18 +79,19 @@ a:link {
   padding: 0.5rem;
 }
 
+.image_dimentions {
+  width: calc(2rem, 1%);
+  height: calc(2rem, 1%);
+}
+
 .imageStyles {
   size: 10px;
-  width: 2rem;
-  height: 2rem;
 }
 
 .imageBorder {
   border: 1px solid var(--text-color);
   border-radius: 50%;
   display: flex;
-  width: 2rem;
-  height: 2rem;
 }
 
 .menu-component {
@@ -108,7 +110,7 @@ a:link {
   border-radius: var(--border-curve);
   border: 1px solid var(--primary-color);
   padding: 0 20px;
-  min-width: 200px;
+  min-width: calc(var(--min-width) - 1rem);
   height: fit-content;
 }
 
@@ -153,9 +155,15 @@ a:link {
 
 .credential-container {
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  padding: 1rem 1rem 5rem;
+  gap: min(1rem, 1%);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  padding: 1rem 1rem;
+}
+
+.home-container {
+  height: calc(100dvh - 5rem);
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .accordion {
@@ -234,6 +242,7 @@ a:link {
 .text_container {
   overflow-x: scroll;
   scrollbar-width: none;
+  text-wrap: nowrap;
 }
 
 .headerItem {
@@ -294,7 +303,7 @@ a:link {
 }
 
 .pushLeft {
-  margin-left: -32px;
+  margin-top: 11px;
 }
 
 .flex-1 {
@@ -311,7 +320,16 @@ a:link {
 }
 
 .password-container {
-  all: unset;
+  min-width: 20px;
+  width: 99px;
+  background: var(--bg);
+  color: white;
+  border: none;
+  margin-right: 0.5rem;
+}
+
+.password-container:focus-visible {
+  border: none;
 }
 
 #passwordField-id {
@@ -365,13 +383,11 @@ dialog::backdrop {
 
 .input_class {
   border-radius: var(--border-curve);
-  font-size: 1.5rem;
   background-color: var(--secondary-color-light);
   color: var(--text-color);
 }
 
 .button_primary {
-  font-size: 1.5rem;
   padding: 8px 16px;
   border-radius: var(--border-curve);
   min-width: 150px;
