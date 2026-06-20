@@ -1,3 +1,3 @@
 [] make PWA
-[] encrypt everything
-[] show password
+[x] encrypt everything
+[x] show password
