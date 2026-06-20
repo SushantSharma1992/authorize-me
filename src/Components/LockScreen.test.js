@@ -83,3 +83,20 @@ test("reset vault clears storage and returns to setup", async () => {
   ).toBeInTheDocument();
   expect(localStorage.getItem("authorize-me-vault")).toBeNull();
 });
+
+test("password shorter than 4 characters shows an error", async () => {
+  renderLockScreen();
+  expect(screen.getByText("Set a master password")).toBeInTheDocument();
+  await act(async () => {
+    await userEvent.type(screen.getByLabelText("Master password"), "abc");
+  });
+  await act(async () => {
+    await userEvent.type(screen.getByLabelText("Confirm password"), "abc");
+  });
+  await act(async () => {
+    await userEvent.click(screen.getByText("Create vault"));
+  });
+  expect(
+    await screen.findByText("Password must be at least 4 characters.")
+  ).toBeInTheDocument();
+});
