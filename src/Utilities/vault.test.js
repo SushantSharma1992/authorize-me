@@ -1,5 +1,6 @@
 import {
   LEGACY_KEY,
+  VAULT_KEY,
   isVaultInitialized,
   readEnvelope,
   writeEnvelope,
@@ -54,4 +55,9 @@ test("session key cache round-trips and clears", () => {
   expect(readSessionKey()).toBe("abc");
   clearSessionKey();
   expect(readSessionKey()).toBeNull();
+});
+
+test("readEnvelope returns null on corrupt JSON instead of throwing", () => {
+  localStorage.setItem(VAULT_KEY, "{not-valid-json");
+  expect(readEnvelope()).toBeNull();
 });

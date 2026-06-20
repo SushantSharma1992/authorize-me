@@ -34,7 +34,7 @@ The context seeds `credentials` from `localStorage` on first load, falling back 
 
 **Forms are schema-driven.** `AddItemForm` generates its input fields by iterating `Object.entries` of the credential shape (`obj` in `src/Utilities/Constants.js`), skipping object-valued and internal keys (`id`, `createdOn`, `updateOn`). To add/remove a credential field, edit `obj` in `Constants.js` — the form follows automatically. A field named `password` is rendered as a password input.
 
-**Import/export** (`src/Pages/Options.js`): export dumps `localStorage` to a JSON file via a Blob URL; import parses an uploaded JSON file and merges it with `mergeProductList` (`src/Utilities/Utilities.js`), which dedupes by `id` and keeps the item with the newer `updatedOn`.
+**Import/export** (`src/Pages/Options.js`): export serializes the in-memory decrypted `credentials` to a plaintext JSON file (via `serializeForExport`) using a Blob URL; import parses an uploaded plaintext JSON file and merges it with `mergeProductList` (`src/Utilities/Utilities.js`), which dedupes by `id` and keeps the item with the newer `updatedOn`.
 
 **UI primitives:** `Modal` wraps the native `<dialog>` element (`showModal()`/`close()` driven by an `isOpen` prop). `Card` shows one credential; clicking a username/password field copies it to the clipboard via `Username` → `navigator.clipboard`. `react-icons` is used throughout for icons.
 
@@ -57,3 +57,4 @@ plaintext JSON and is re-encrypted on save.
 - `src/GlobalStore/LoadData.js` is broken, unused scaffolding (references undefined variables). Do not import it.
 - In `src/Utilities/Utilities.js`, only `mergeProductList` is wired up. `importData`/`getDownloadURL`/`higlightInList`/`readFile`/`writeFile` are dead or stubbed — `Options.js` defines its own import/export logic.
 - `AddItemForm.getObject` still contains leftover `quantity`/`price` cart-like logic that doesn't map to the credential domain; tread carefully when changing form submission.
+- `src/Components/SettingsMenu.js` is unused dead code (imported nowhere) and still reads the legacy plaintext `credentials` key directly — do not wire it up without first updating it for the encrypted vault.

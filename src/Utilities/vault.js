@@ -8,7 +8,12 @@ export function isVaultInitialized() {
 
 export function readEnvelope() {
   const raw = localStorage.getItem(VAULT_KEY);
-  return raw ? JSON.parse(raw) : null;
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
 }
 
 export function writeEnvelope(envelope) {

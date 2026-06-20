@@ -21,7 +21,7 @@ test("decrypting with the wrong password throws", async () => {
   const rightKey = await deriveKey("right", salt);
   const wrongKey = await deriveKey("wrong", salt);
   const envelope = await encrypt({ a: 1 }, rightKey);
-  await expect(decrypt(envelope, wrongKey)).rejects.toBeDefined();
+  await expect(decrypt(envelope, wrongKey)).rejects.toThrow();
 });
 
 test("each encryption uses a unique IV", async () => {
