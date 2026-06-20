@@ -401,3 +401,29 @@ dialog::backdrop {
   color: white;
   border: none;
 }
+
+.lockscreen-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.lockscreen-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 320px;
+  max-width: 90vw;
+}
+.lockscreen-error {
+  color: #d33;
+  font-size: 0.9rem;
+}
+.lockscreen-reset {
+  background: none;
+  border: none;
+  color: #888;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
