@@ -25,6 +25,8 @@ export const importData = (evt) => {
     itemDom.focus();
   };
 
+  export const serializeForExport = (credentials) =>
+    JSON.stringify(credentials, null, 2);
 
   export const mergeProductList = (oldList, newList) => {
     const updatedList = oldList.slice();

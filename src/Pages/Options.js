@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { BsFiletypeJson } from "react-icons/bs";
 import OptionItem from "./OptionItem";
-import { SavedData } from "../Utilities/Constants";
 import { AppContext } from "../GlobalStore/Context";
-import { mergeProductList } from "../Utilities/Utilities";
+import { mergeProductList, serializeForExport } from "../Utilities/Utilities";
 import useModifyCred from "../Utilities/CustomHooks/useModifyCred";
 
 export default function Options() {
@@ -48,7 +47,7 @@ export default function Options() {
   };
   const downloadJsonData = (e) => {
     e.preventDefault();
-    const output = localStorage.getItem(SavedData.credentials);
+    const output = serializeForExport(credentials);
     const blob = new Blob([output]);
     fileDownloadURL = URL.createObjectURL(blob);
     setDownloadUrl(fileDownloadURL);
