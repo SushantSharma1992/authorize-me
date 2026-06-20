@@ -1,8 +1,12 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
+beforeEach(() => {
+  localStorage.clear();
+  sessionStorage.clear();
+});
+
+test("renders the lock screen when no vault exists", () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(screen.getByText("Set a master password")).toBeInTheDocument();
 });
