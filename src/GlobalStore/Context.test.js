@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useContext } from "react";
 import Context, { AppContext } from "./Context";
@@ -68,7 +68,9 @@ test("unlock succeeds with the right password and fails with the wrong one", asy
     expect(screen.getByTestId("locked").textContent).toBe("false")
   );
 
-  await userEvent.click(screen.getByText("lock"));
+  await act(async () => {
+    await userEvent.click(screen.getByText("lock"));
+  });
   expect(screen.getByTestId("locked").textContent).toBe("true");
 
   await userEvent.click(screen.getByText("unlock-wrong"));

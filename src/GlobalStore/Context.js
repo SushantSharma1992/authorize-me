@@ -40,13 +40,18 @@ const Context = ({ children }) => {
     if (isLocked || !keyRef.current) return;
     let cancelled = false;
     const persist = async () => {
-      const envelope = vault.readEnvelope();
-      const { iv, ciphertext } = await cryptoUtil.encrypt(
-        credentials,
-        keyRef.current
-      );
-      if (!cancelled) {
-        vault.writeEnvelope({ version: 1, salt: envelope.salt, iv, ciphertext });
+      try {
+        const envelope = vault.readEnvelope();
+        if (!envelope) return;
+        const { iv, ciphertext } = await cryptoUtil.encrypt(
+          credentials,
+          keyRef.current
+        );
+        if (!cancelled) {
+          vault.writeEnvelope({ version: 1, salt: envelope.salt, iv, ciphertext });
+        }
+      } catch (err) {
+        console.error("persist failed:", err);
       }
     };
     persist();
