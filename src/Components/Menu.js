@@ -1,39 +1,23 @@
 import React, { useState } from "react";
-import { FiMoreVertical } from "react-icons/fi";
 
-function Menu({ dropUp, children }) {
+function Menu({ children }) {
   const [open, setOpen] = useState(false);
-
   return (
     <span
-      onBlur={() => {
-        setOpen(false);
-      }}
       className="menu-component"
-      onClick={() => {
-        setOpen(!open);
-      }}
+      onBlur={() => setOpen(false)}
     >
-      <div tabIndex={0} className="dropdownContainer">
-        <div className="imageBorder image_dimentions">
-          <FiMoreVertical className="imageStyles image_dimentions" />
-        </div>
-        <div
-          className={`dropdownPanel ${
-            open ? (dropUp ? "openDropUp" : "openDropdown") : ""
-          }`}
-        >
-          {children}
-        </div>
+      <button
+        type="button"
+        aria-label="Card menu"
+        className="cred-kebab"
+        onClick={() => setOpen((p) => !p)}
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="12" cy="19" r="1.7"/></svg>
+      </button>
+      <div className={`dropdownPanel ${open ? "openDropdown" : ""}`}>
+        {children}
       </div>
-
-      {/* <select ref={selectOptions} name="Menu" id="Menu">
-        {options.map((value) => {
-          return <option key={value} value={value}>
-            {value}
-          </option>;
-        })}
-      </select> */}
     </span>
   );
 }

@@ -94,12 +94,13 @@ a:link {
   display: flex;
 }
 
-.menu-component {
-  display: block;
-  width: fit-content;
-  margin: auto;
-  padding: 0.5rem;
+.menu-component { position: relative; display: flex; }
+.cred-kebab {
+  width: 34px; height: 34px; flex: none; display: flex; align-items: center;
+  justify-content: center; background: transparent; border: none; border-radius: 9px;
+  color: #8A8F98; cursor: pointer; transition: background .12s, color .12s;
 }
+.cred-kebab:hover { background: rgba(255, 255, 255, 0.08); color: var(--text); }
 
 .margin-auto {
   margin: auto;
@@ -208,36 +209,22 @@ a:link {
   transition: max-height 0.2s ease-in-out;
 }
 
-.dropdownContainer {
-  position: relative;
-}
-
 .dropdownPanel {
-  display: none;
-  position: absolute;
-  width: max-content;
-  border: 1px solid var(--primary-color);
-  background-color: var(--bg);
-  padding: 0.5rem;
-  z-index: 2;
+  display: none; position: absolute; top: 40px; right: 0;
+  background: var(--surface); border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 11px; padding: 6px; box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
+  z-index: 6; min-width: 148px;
 }
-
+.dropdownPanel.openDropdown { display: block; }
 .dropdownItem {
-  text-align: start;
-  user-select: none;
-  padding: 4px;
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  background: none; border: none; color: #D6D7DC; font-family: inherit;
+  font-size: 13px; font-weight: 600; padding: 9px 10px; border-radius: 8px;
+  cursor: pointer; text-align: left;
 }
-
-.openDropdown {
-  display: block;
-  right: 0;
-}
-
-.openDropUp {
-  display: block;
-  right: 0;
-  bottom: 38px;
-}
+.dropdownItem:hover { background: rgba(255, 255, 255, 0.06); }
+.dropdownItem--danger { color: #E5675F; }
+.dropdownItem--danger:hover { background: rgba(229, 83, 75, 0.12); }
 
 .text_container {
   overflow-x: scroll;
@@ -472,3 +459,32 @@ dialog::backdrop {
 .cred-strength__fill { height: 100%; border-radius: 3px; }
 .cred-strength__label { font-size: 11px; font-weight: 700; }
 .cred-updated { font-size: 11px; color: var(--muted); white-space: nowrap; }
+
+/* ---- Card ---- */
+.cred-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  transition: border-color .15s, box-shadow .15s, transform .15s;
+}
+.cred-card:hover {
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+.cred-card__head { display: flex; align-items: center; gap: 12px; }
+.cred-site-wrap { min-width: 0; flex: 1; }
+.cred-site {
+  font-size: 16px; font-weight: 700; color: var(--accent);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.cred-site a { color: var(--accent); text-decoration: none; }
+.cred-url {
+  font-size: 12px; color: var(--muted);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
