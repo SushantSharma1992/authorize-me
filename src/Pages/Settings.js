@@ -7,26 +7,21 @@ const Settings = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="margin-auto">
-      <div
-        className="padding-md flex_horizontal"
-        onClick={() => {
-          setIsOpen(true);
-        }}
+    <>
+      <button
+        type="button"
+        aria-label="Settings"
+        className="vault-icon-btn"
+        onClick={() => setIsOpen(true)}
       >
         <FiSettings />
-      </div>
-      <Modal
-        isOpen={isOpen}
-        onClose={() => {
-          setIsOpen(false);
-        }}
-      >
+      </button>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <div className="list_container">
           <Options />
         </div>
       </Modal>
-    </div>
+    </>
   );
 };
 
