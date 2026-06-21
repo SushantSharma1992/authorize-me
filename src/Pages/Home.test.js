@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import Home from "./Home";
 
 // Drive useSearch so the grid is empty after a query.
@@ -19,10 +18,6 @@ jest.mock("../Utilities/CustomHooks/useToastNotification", () => ({
 jest.mock("../GlobalStore/Context", () => ({
   __esModule: true,
   AppContext: require("react").createContext({ credentials: [], showToast: false, toastNotification: "" }),
-}));
-jest.mock("../Components/Modal", () => ({
-  __esModule: true,
-  default: ({ isOpen, children }) => (isOpen ? <div data-testid="modal">{children}</div> : null),
 }));
 
 test("shows the empty state when there are no results", () => {

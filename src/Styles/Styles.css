@@ -35,10 +35,6 @@ input::placeholder, textarea::placeholder { color: #5c5f68; }
   font-size: 0.6rem;
 }
 
-a:visited,
-a:link {
-  color: var(--primary-color);
-}
 
 .font-m{
   font-size: clamp(0.4rem, calc(0.9vw + .5rem), 1rem);
@@ -47,15 +43,6 @@ a:link {
   font-size: clamp(0.4rem, calc(1vw + 1rem), 2rem);
 }
 
-.content {
-  padding: min(5px, 1%) min(10px, 2%);
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-  justify-content: space-between;
-  width: -webkit-fill-available;
-  width: -moz-available;
-}
 
 .flex-start {
   display: flex;
@@ -67,32 +54,11 @@ a:link {
   flex-direction: column;
 }
 
-.position-relative {
-  position: relative;
-}
-
-.paddingright {
-  padding-right: 3rem;
-}
 
 .padding-md {
   padding: 0.5rem;
 }
 
-.image_dimentions {
-  width: calc(2rem, 1%);
-  height: calc(2rem, 1%);
-}
-
-.imageStyles {
-  size: 10px;
-}
-
-.imageBorder {
-  border: 1px solid var(--text-color);
-  border-radius: 50%;
-  display: flex;
-}
 
 .menu-component { position: relative; display: flex; }
 .cred-kebab {
@@ -106,53 +72,11 @@ a:link {
   margin: auto;
 }
 
-.CardComponent {
-  position: relative;
-  border-radius: var(--border-curve);
-  border: 1px solid var(--primary-color);
-  padding: 0 20px;
-  min-width: calc(var(--min-width) - 1rem);
-  height: fit-content;
-}
-
-.centerElement {
-  position: fixed;
-  top: 86dvh;
-  right: 50%;
-  transform: translate(50%, 50%);
-}
-
-.grey-indicator-box {
-  background-color: var(--toast-background);
-  width: fit-content;
-  border-radius: 40px;
-  padding: 5px 15px;
-  font-size: 0.9rem;
-  z-index: var(--z-level-1001);
-}
 
 .margin-small {
   margin: 5px;
 }
 
-.tag-container {
-  margin: 5px 0;
-  overflow-x: scroll;
-  white-space: nowrap;
-}
-
-.customize-scrollbar::-webkit-scrollbar {
-  height: 0.4rem;
-  background: var(--bg);
-}
-
-.customize-scrollbar:hover::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
-}
-
-.tag-margin {
-  margin: 0 2px;
-}
 
 .credential-container {
   display: grid;
@@ -167,47 +91,6 @@ a:link {
   overflow-x: hidden;
 }
 
-.accordion {
-  background-color: var(--toast-background);
-  color: var(--text-color);
-  cursor: pointer;
-  padding: 0.3rem;
-  width: 100%;
-  text-align: left;
-  border: none;
-  outline: none;
-  transition: 0.4s;
-  border-radius: 1rem 1rem 0 0;
-}
-
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active,
-.accordion:hover {
-  background-color: #ccc;
-}
-
-/* Style the accordion panel. Note: hidden by default */
-.panel {
-  padding: 0 18px;
-  font-size: small;
-  border-left: 1px solid var(--primary-color);
-  border-right: 1px solid var(--primary-color);
-  max-height: 0;
-  overflow: hidden;
-  background-color: var(--bg);
-  transition: max-height 0.2s ease-in-out;
-  transition: min-height 0.2s ease-in-out;
-}
-
-.displayNone {
-  max-height: 0;
-  transition: max-height 0.2s ease-in-out;
-}
-
-.displayBlock {
-  max-height: 200px;
-  transition: max-height 0.2s ease-in-out;
-}
 
 .dropdownPanel {
   display: none; position: absolute; top: 40px; right: 0;
@@ -226,43 +109,6 @@ a:link {
 .dropdownItem--danger { color: #E5675F; }
 .dropdownItem--danger:hover { background: rgba(229, 83, 75, 0.12); }
 
-.text_container {
-  overflow-x: scroll;
-  scrollbar-width: none;
-  text-wrap: nowrap;
-}
-
-.headerItem {
-  border-radius: var(--border-curve);
-  font-size: x-large;
-  outline: none;
-  padding: 0.5rem;
-  margin: 0.5rem;
-  min-width: 100px;
-}
-
-.searchInput {
-  border: 1px solid var(--primary-color);
-  width: 112px;
-  flex: 1;
-}
-
-.search_result_item {
-  font-size: larger;
-  background-color: var(--primary-color-light);
-  padding: 0.5rem;
-  border-radius: var(--border-curve);
-  cursor: pointer;
-}
-
-.headerContainer {
-  position: fixed;
-  bottom: 0;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  background-color: var(--text-color-dark);
-}
 
 /* .searchInnerContainer {
     position: relative;
@@ -285,13 +131,6 @@ a:link {
   flex-grow: 1;
 }
 
-.align_right {
-  align-items: flex-end;
-}
-
-.pushLeft {
-  margin-top: 11px;
-}
 
 .flex-1 {
   flex: 1;
@@ -306,36 +145,6 @@ a:link {
   width: -webkit-fill-available;
 }
 
-.password-container {
-  min-width: 20px;
-  width: 99px;
-  background: var(--bg);
-  color: white;
-  border: none;
-  margin-right: 0.5rem;
-}
-
-.password-container:focus-visible {
-  border: none;
-}
-
-#passwordField-id {
-  width: -moz-available;
-  width: -webkit-fill-available;
-  text-align: start;
-}
-
-.closeButton {
-  position: fixed;
-  top: 0;
-  right: 0;
-  color: white;
-  padding: 1.5rem;
-  font-size: 2rem;
-}
-
-.modal_container {
-}
 
 dialog::backdrop {
   background-color: #282c34;
@@ -368,26 +177,6 @@ dialog::backdrop {
   padding-right: 1rem;
 }
 
-.input_class {
-  border-radius: var(--border-curve);
-  background-color: var(--secondary-color-light);
-  color: var(--text-color);
-}
-
-.button_primary {
-  padding: 8px 16px;
-  border-radius: var(--border-curve);
-  min-width: 150px;
-  margin: 0.8rem 0;
-  background-color: var(--primary-color);
-}
-
-.modal_styles {
-  background-color: var(--secondary-color);
-  border-radius: var(--border-curve);
-  color: white;
-  border: none;
-}
 
 /* ---- Toast ---- */
 .vault-toast {

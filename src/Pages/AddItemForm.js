@@ -58,7 +58,7 @@ const AddItemForm = ({ item, editItem, onClose }) => {
           <input id="f-pass" type="password" className="vault-input vault-input--mono" placeholder="password" value={form.password} onChange={set("password")} />
         </div>
         <div className="vault-field2">
-          <label className="vault-field2__label" htmlFor="f-notes">Notes</label>
+          <label className="vault-field2__label" htmlFor="f-notes">Notes <span style={{ textTransform: "none", letterSpacing: 0, fontWeight: 500, color: "#52555e" }}>(optional)</span></label>
           <textarea id="f-notes" className="vault-textarea" rows="2" placeholder="Add a note…" value={form.notes} onChange={set("notes")} />
         </div>
         <div className="vault-form__actions">
