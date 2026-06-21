@@ -1,30 +1,12 @@
-import React, { useEffect, useRef } from "react";
-import { IoCloseCircleOutline } from "react-icons/io5";
-import Toast from "./Toast";
+import React from "react";
 
 const Modal = ({ isOpen, onClose, children }) => {
-  const dialogRef = useRef();
-
-  useEffect(() => {
-    isOpen ? openDialog() : closeDialog();
-  }, [isOpen]);
-
-  const openDialog = () => {
-    dialogRef.current.showModal();
-  };
-  const closeDialog = () => {
-    dialogRef.current.close();
-  };
-
+  if (!isOpen) return null;
   return (
-    <div className="modal_container">
-      <dialog ref={dialogRef} className="modal_styles">
-        <div className="closeButton" onClick={onClose}>
-          <IoCloseCircleOutline />
-        </div>
-        <div className="modal_child_container">{children}</div>
-        <Toast />
-      </dialog>
+    <div className="vault-modal__backdrop" onClick={onClose}>
+      <div className="vault-modal" onClick={(e) => e.stopPropagation()}>
+        {children}
+      </div>
     </div>
   );
 };

@@ -514,3 +514,32 @@ dialog::backdrop {
 .vault-add:hover { filter: brightness(1.08); }
 .vault-icon-btn { width: 48px; height: 48px; flex: none; display: flex; align-items: center; justify-content: center; background: var(--surface); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; color: #8A8F98; cursor: pointer; transition: color .12s, border-color .12s; }
 .vault-icon-btn:hover { color: var(--accent); border-color: rgba(255, 255, 255, 0.18); }
+
+/* ---- Modal ---- */
+.vault-modal__backdrop { position: fixed; inset: 0; background: rgba(8, 9, 12, 0.62); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); z-index: 50; display: flex; align-items: center; justify-content: center; padding: 24px; }
+.vault-modal { width: 100%; max-width: 440px; background: var(--card); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px; padding: 24px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6); }
+.vault-modal__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.vault-modal__title { font-size: 18px; font-weight: 800; }
+.vault-modal__close { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: transparent; border: none; border-radius: 8px; color: #8A8F98; cursor: pointer; }
+.vault-modal__close:hover { background: rgba(255, 255, 255, 0.08); color: var(--text); }
+
+/* ---- Form ---- */
+.vault-form { display: flex; flex-direction: column; gap: 14px; }
+.vault-field2 { display: flex; flex-direction: column; gap: 6px; }
+.vault-field2__label { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.vault-input, .vault-textarea { width: 100%; background: var(--surface); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 11px 12px; color: var(--text); font-family: "Manrope", sans-serif; font-size: 14px; outline: none; }
+.vault-input--mono { font-family: "JetBrains Mono", monospace; font-size: 13px; }
+.vault-textarea { resize: none; }
+.vault-input:focus, .vault-textarea:focus { border-color: var(--accent); }
+.vault-form__actions { display: flex; gap: 10px; margin-top: 6px; }
+.vault-btn--ghost { flex: 1; background: transparent; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 11px; padding: 12px; color: #C7C9D1; font-family: "Manrope", sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; }
+.vault-btn--ghost:hover { background: rgba(255, 255, 255, 0.05); }
+.vault-btn--primary { flex: 1; background: var(--accent); border: none; border-radius: 11px; padding: 12px; color: #1a1408; font-family: "Manrope", sans-serif; font-size: 14px; font-weight: 800; cursor: pointer; }
+.vault-btn--primary:hover { filter: brightness(1.08); }
+
+/* ---- Settings list (Options) ---- */
+.list_container { min-width: 320px; }
+.options_container { display: flex; flex-direction: column; background: transparent; color: var(--text); }
+.option_row { background: transparent; padding: 12px 4px; display: flex; align-items: center; gap: 12px; justify-content: flex-start; border-bottom: 1px solid rgba(255, 255, 255, 0.07); color: var(--text); }
+.option_description { font-size: 15px; font-weight: 600; padding: 0; text-align: left; }
+.option_image { color: var(--accent); }
