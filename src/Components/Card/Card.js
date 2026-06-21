@@ -22,14 +22,14 @@ function Card({ data, editItem }) {
         <div className="cred-site-wrap">
           <div className="cred-site">
             {data.url ? (
-              <a target="_blank" rel="noreferrer" href={data.url}>
+              <a target="_blank" rel="noreferrer" href={/^https?:\/\//i.test(data.url) ? data.url : `https://${data.url}`}>
                 {data.service}
               </a>
             ) : (
               data.service
             )}
           </div>
-          <div className="cred-url">{data.url}</div>
+          {data.url && <div className="cred-url">{data.url}</div>}
         </div>
         <CardMenu options={options} />
       </div>

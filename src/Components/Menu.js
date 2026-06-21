@@ -5,7 +5,7 @@ function Menu({ children }) {
   return (
     <span
       className="menu-component"
-      onBlur={() => setOpen(false)}
+      onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setOpen(false); }}
     >
       <button
         type="button"
