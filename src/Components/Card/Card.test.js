@@ -38,7 +38,24 @@ test("password is masked until revealed", async () => {
   expect(screen.getByText("Abcd1234!")).toBeInTheDocument();
 });
 
-test("shows the password strength label", () => {
+test("the note is not printed inline; it opens in a modal from the header button", async () => {
   render(<Card data={item} editItem={() => {}} />);
-  expect(screen.getByText("Strong")).toBeInTheDocument();
+  // The note text is not shown on the card itself.
+  expect(screen.queryByText("Personal")).not.toBeInTheDocument();
+  // The header note button reveals it in a modal.
+  await act(async () => {
+    await userEvent.click(screen.getByLabelText("View note"));
+  });
+  expect(screen.getByText("Personal")).toBeInTheDocument();
+});
+
+test("hides the note button when there is no note", () => {
+  render(<Card data={{ ...item, notes: "" }} editItem={() => {}} />);
+  expect(screen.queryByLabelText("View note")).not.toBeInTheDocument();
+});
+
+test("the card menu offers Edit and Delete", () => {
+  render(<Card data={item} editItem={() => {}} />);
+  expect(screen.getByText("Edit")).toBeInTheDocument();
+  expect(screen.getByText("Delete")).toBeInTheDocument();
 });

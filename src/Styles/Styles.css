@@ -62,7 +62,7 @@ input::placeholder, textarea::placeholder { color: #5c5f68; }
 
 .menu-component { position: relative; display: flex; }
 .cred-kebab {
-  width: 34px; height: 34px; flex: none; display: flex; align-items: center;
+  width: 32px; height: 32px; flex: none; display: flex; align-items: center;
   justify-content: center; background: transparent; border: none; border-radius: 9px;
   color: #8A8F98; cursor: pointer; transition: background .12s, color .12s;
 }
@@ -175,75 +175,66 @@ dialog::backdrop {
 
 /* ---- Card field rows / avatar / strength ---- */
 .cred-avatar {
-  width: 42px; height: 42px; border-radius: 12px; flex: none;
+  width: 36px; height: 36px; border-radius: 11px; flex: none;
   display: flex; align-items: center; justify-content: center;
-  font-weight: 800; font-size: 18px;
+  font-weight: 800; font-size: 16px;
 }
-.cred-field { display: flex; flex-direction: column; gap: 6px; }
-.cred-field__label {
-  font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--muted); font-weight: 700;
-}
-.cred-field__value {
+.cred-row {
   display: flex; align-items: center; gap: 8px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--card-border);
-  border-radius: 10px; padding: 9px 10px;
+  border-radius: 9px; padding: 6px 8px;
 }
-.cred-field__text {
-  font-family: "JetBrains Mono", monospace; font-size: 13px; color: #D6D7DC;
+.cred-row__icon { flex: none; color: #5c5f68; display: flex; }
+.cred-row__text {
+  font-family: "JetBrains Mono", monospace; font-size: 12.5px; color: #D6D7DC;
   flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.cred-field__text--pass { letter-spacing: 1.5px; }
+.cred-row__text--pass { letter-spacing: 1.5px; }
 .cred-icon-btn {
-  width: 30px; height: 30px; flex: none; display: flex; align-items: center;
-  justify-content: center; background: transparent; border: none; border-radius: 8px;
+  width: 28px; height: 28px; flex: none; display: flex; align-items: center;
+  justify-content: center; background: transparent; border: none; border-radius: 7px;
   color: #8A8F98; cursor: pointer; transition: background .12s, color .12s;
 }
 .cred-icon-btn:hover { background: rgba(255, 255, 255, 0.08); color: var(--accent); }
-.cred-note {
-  font-size: 12.5px; color: #9A9DA6; line-height: 1.5;
-  background: rgba(255, 255, 255, 0.03); border-radius: 10px; padding: 8px 11px;
+.cred-note-btn {
+  width: 32px; height: 32px; flex: none; display: flex; align-items: center;
+  justify-content: center; background: transparent; border: none; border-radius: 9px;
+  color: var(--card-accent, var(--accent)); cursor: pointer; transition: background .12s;
 }
-.cred-foot {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 12px; margin-top: 2px;
-}
-.cred-strength { display: flex; align-items: center; gap: 9px; flex: 1; min-width: 0; }
-.cred-strength__track {
-  height: 5px; flex: 1; max-width: 96px; background: rgba(255, 255, 255, 0.08);
-  border-radius: 3px; overflow: hidden;
-}
-.cred-strength__fill { height: 100%; border-radius: 3px; }
-.cred-strength__label { font-size: 11px; font-weight: 700; }
-.cred-updated { font-size: 11px; color: var(--muted); white-space: nowrap; }
+.cred-note-btn:hover { background: rgba(255, 255, 255, 0.08); }
 
 /* ---- Card ---- */
 .cred-card {
-  background: var(--card);
-  border: 1px solid var(--card-border);
+  background: linear-gradient(158deg, #20222c 0%, #191b22 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 16px;
-  padding: 18px;
+  padding: 14px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 9px;
   position: relative;
-  transition: border-color .15s, box-shadow .15s, transform .15s;
+  transition: border-color .18s, box-shadow .18s, transform .18s;
+}
+.cred-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--card-accent, var(--accent)), transparent 70%);
+  opacity: 0.8; border-top-left-radius: 16px; border-top-right-radius: 16px;
 }
 .cred-card:hover {
-  border-color: rgba(255, 255, 255, 0.14);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  transform: translateY(-2px);
+  border-color: var(--card-accent, rgba(255, 255, 255, 0.14));
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45), 0 0 0 1px var(--card-glow, transparent);
+  transform: translateY(-3px);
 }
-.cred-card__head { display: flex; align-items: center; gap: 12px; }
+.cred-card__head { display: flex; align-items: center; gap: 11px; }
 .cred-site-wrap { min-width: 0; flex: 1; }
 .cred-site {
-  font-size: 16px; font-weight: 700; color: var(--accent);
+  font-size: 15px; font-weight: 700; color: var(--accent);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .cred-site a { color: var(--accent); text-decoration: none; }
 .cred-url {
-  font-size: 12px; color: var(--muted);
+  font-size: 11.5px; color: var(--muted);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 
@@ -255,7 +246,7 @@ dialog::backdrop {
 .vault-count { font-size: 13px; color: #888B94; font-weight: 600; }
 .vault-scroll { flex: 1; overflow-y: auto; padding: 18px 28px 124px; }
 .vault-inner { max-width: 1240px; margin: 0 auto; }
-.cred-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(312px, 1fr)); gap: 16px; }
+.cred-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(272px, 1fr)); gap: 12px; }
 .vault-empty { text-align: center; padding: 96px 20px; }
 .vault-empty__icon { width: 64px; height: 64px; border-radius: 16px; background: rgba(255, 255, 255, 0.05); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--muted); }
 .vault-empty__title { font-size: 16px; font-weight: 700; color: #C7C9D1; }
@@ -280,6 +271,13 @@ dialog::backdrop {
 .vault-modal__title { font-size: 18px; font-weight: 800; }
 .vault-modal__close { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: transparent; border: none; border-radius: 8px; color: #8A8F98; cursor: pointer; }
 .vault-modal__close:hover { background: rgba(255, 255, 255, 0.08); color: var(--text); }
+
+/* ---- Note modal ---- */
+.note-modal__head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.note-modal__titlewrap { flex: 1; min-width: 0; }
+.note-modal__title { font-size: 16px; font-weight: 800; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.note-modal__eyebrow { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.note-modal__body { font-size: 14px; line-height: 1.6; color: #C7C9D1; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px 16px; white-space: pre-wrap; }
 
 /* ---- Form ---- */
 .vault-form { display: flex; flex-direction: column; gap: 14px; }

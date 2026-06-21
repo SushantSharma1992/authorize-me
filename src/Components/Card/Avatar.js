@@ -1,5 +1,5 @@
 import React from "react";
-import { avatarColor, hexToRgba } from "../../Utilities/display";
+import { avatarColor, hexToRgba, shade } from "../../Utilities/display";
 
 function Avatar({ name }) {
   const color = avatarColor(name);
@@ -7,7 +7,11 @@ function Avatar({ name }) {
   return (
     <div
       className="cred-avatar"
-      style={{ background: hexToRgba(color, 0.16), color }}
+      style={{
+        background: `linear-gradient(145deg, ${color}, ${shade(color, -28)})`,
+        color: "#fff",
+        boxShadow: `0 4px 12px ${hexToRgba(color, 0.32)}`,
+      }}
     >
       {initial}
     </div>
