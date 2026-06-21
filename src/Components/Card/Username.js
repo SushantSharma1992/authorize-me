@@ -20,7 +20,7 @@ function Username({ label, value }) {
         <span className="cred-field__text">{value}</span>
         <button
           type="button"
-          aria-label={`Copy ${label.toLowerCase()}`}
+          aria-label={`Copy ${(label ?? "").toLowerCase()}`}
           className="cred-icon-btn"
           onClick={copy}
         >
