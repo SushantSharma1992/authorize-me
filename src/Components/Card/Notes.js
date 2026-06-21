@@ -1,23 +1,8 @@
-import React, { useState } from "react";
-import Tags from "./Tags";
+import React from "react";
 
-export default function Notes({ content, tags }) {
-  const [open, setOpen] = useState(false);
-  const toggle = () => {
-    setOpen((prev) => !prev);
-  };
-
-  return (
-    <>
-      <button className="accordion" onClick={toggle}>
-        Notes
-      </button>
-      <div className={`panel ${open ? "displayBlock" : "displayNone"}`}>
-        <div>
-          <p>{content}</p>
-        </div>
-        {tags && <Tags list={tags} />}
-      </div>
-    </>
-  );
+function Notes({ content }) {
+  if (!content) return null;
+  return <div className="cred-note">{content}</div>;
 }
+
+export default Notes;
