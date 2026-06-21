@@ -55,7 +55,7 @@ const AddItemForm = ({ item, editItem, onClose }) => {
         </div>
         <div className="vault-field2">
           <label className="vault-field2__label" htmlFor="f-pass">Password</label>
-          <input id="f-pass" className="vault-input vault-input--mono" placeholder="password" value={form.password} onChange={set("password")} />
+          <input id="f-pass" type="password" className="vault-input vault-input--mono" placeholder="password" value={form.password} onChange={set("password")} />
         </div>
         <div className="vault-field2">
           <label className="vault-field2__label" htmlFor="f-notes">Notes</label>
