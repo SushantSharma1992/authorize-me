@@ -389,31 +389,24 @@ dialog::backdrop {
   border: none;
 }
 
-.lockscreen-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+/* ---- Toast ---- */
+.vault-toast {
+  position: fixed; bottom: 94px; left: 50%; transform: translateX(-50%);
+  background: #2a2d37; color: var(--text); border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 18px; border-radius: 10px; font-size: 13px; font-weight: 600;
+  z-index: 40; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5); animation: toastIn .2s ease;
 }
-.lockscreen-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  width: 320px;
-  max-width: 90vw;
-}
-.lockscreen-error {
-  color: #d33;
-  font-size: 0.9rem;
-}
-.lockscreen-reset {
-  background: none;
-  border: none;
-  color: #888;
-  text-decoration: underline;
-  cursor: pointer;
-  font-size: 0.8rem;
-}
+
+/* ---- Lock screen ---- */
+.lockscreen-container { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: var(--bg); padding: 24px; }
+.lockscreen-form { display: flex; flex-direction: column; gap: 14px; width: 340px; max-width: 90vw; background: var(--card); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 18px; padding: 28px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5); }
+.lockscreen-form h2 { margin: 0 0 4px; font-size: 20px; font-weight: 800; color: var(--text); }
+.lockscreen-input { width: 100%; background: var(--surface); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px; color: var(--text); font-family: "Manrope", sans-serif; font-size: 15px; outline: none; }
+.lockscreen-input:focus { border-color: var(--accent); }
+.lockscreen-submit { background: var(--accent); border: none; border-radius: 11px; padding: 13px; color: #1a1408; font-family: "Manrope", sans-serif; font-size: 15px; font-weight: 800; cursor: pointer; }
+.lockscreen-submit:hover { filter: brightness(1.08); }
+.lockscreen-error { color: #E5675F; font-size: 13px; }
+.lockscreen-reset { background: none; border: none; color: var(--muted); text-decoration: underline; cursor: pointer; font-size: 12px; }
 
 /* ---- Card field rows / avatar / strength ---- */
 .cred-avatar {

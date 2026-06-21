@@ -49,7 +49,7 @@ const LockScreen = () => {
           type="password"
           aria-label="Master password"
           placeholder="Master password"
-          className="input_class padding-md font-xl"
+          className="lockscreen-input"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           autoFocus
@@ -59,13 +59,13 @@ const LockScreen = () => {
             type="password"
             aria-label="Confirm password"
             placeholder="Confirm password"
-            className="input_class padding-md font-xl"
+            className="lockscreen-input"
             value={confirm}
             onChange={(e) => setConfirm(e.target.value)}
           />
         )}
         {error && <div className="lockscreen-error">{error}</div>}
-        <button type="submit" className="button_primary full-width font-xl">
+        <button type="submit" className="lockscreen-submit">
           {isInitialized ? "Unlock" : "Create vault"}
         </button>
         {isInitialized && (
