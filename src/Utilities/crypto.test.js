@@ -1,10 +1,9 @@
 import {
   generateSalt,
   deriveKey,
+  deriveLegacyKey,
   encrypt,
   decrypt,
-  exportRawKey,
-  importRawKey,
   bytesToBase64,
   base64ToBytes,
 } from "./crypto";
@@ -31,11 +30,24 @@ test("each encryption uses a unique IV", async () => {
   expect(a.iv).not.toEqual(b.iv);
 });
 
-test("an exported key can be re-imported and still decrypts", async () => {
-  const key = await deriveKey("pw", generateSalt());
-  const envelope = await encrypt({ v: 42 }, key);
-  const reimported = await importRawKey(await exportRawKey(key));
-  expect(await decrypt(envelope, reimported)).toEqual({ v: 42 });
+test("deriveLegacyKey decrypts data encrypted with a legacy PBKDF2 key", async () => {
+  // Migration path: old vaults were encrypted with a PBKDF2-derived key.
+  const salt = generateSalt();
+  const legacyKey = await deriveLegacyKey("pw", salt);
+  const envelope = await encrypt({ v: 42 }, legacyKey);
+  expect(await decrypt(envelope, await deriveLegacyKey("pw", salt))).toEqual({
+    v: 42,
+  });
+});
+
+test("Argon2id and legacy PBKDF2 derive distinct keys from the same input", async () => {
+  // Proves the new KDF is genuinely different — data sealed under one KDF
+  // cannot be opened with the other, so the version flag must drive derivation.
+  const salt = generateSalt();
+  const argonKey = await deriveKey("pw", salt);
+  const legacyKey = await deriveLegacyKey("pw", salt);
+  const envelope = await encrypt({ secret: 1 }, argonKey);
+  await expect(decrypt(envelope, legacyKey)).rejects.toThrow();
 });
 
 test("base64 round-trips bytes", () => {

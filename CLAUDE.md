@@ -40,21 +40,28 @@ The context seeds `credentials` from `localStorage` on first load, falling back 
 
 ## Encryption
 
-Credentials are encrypted with the Web Crypto API (AES-GCM, key derived from a
-master password via PBKDF2). The crypto primitives live in
-`src/Utilities/crypto.js` and the `localStorage` envelope layer in
-`src/Utilities/vault.js` (envelope `{ version, salt, iv, ciphertext }` under the
-`authorize-me-vault` key). `AppContext` owns lock state (`isLocked`,
-`isInitialized`) and the `setupPassword` / `unlock` / `lock` / `resetVault`
-actions; the derived key lives in a ref and is cached in `sessionStorage` so a
-same-tab refresh stays unlocked. `VaultGate` renders `LockScreen` until
-unlocked, then `Home`. The persistence effect in `Context.js` re-encrypts
-`credentials` on every change. Export decrypts to plaintext JSON; import parses
-plaintext JSON and is re-encrypted on save.
+Credentials are encrypted with AES-GCM (Web Crypto), with the key derived from
+the master password via **Argon2id** (memory-hard, `hash-wasm`; params in
+`ARGON2_PARAMS`). The crypto primitives live in `src/Utilities/crypto.js` and
+the `localStorage` envelope layer in `src/Utilities/vault.js` (v2 envelope
+`{ version: 2, kdf: "argon2id", params, salt, iv, ciphertext }` under the
+`authorize-me-vault` key). `crypto.js` also keeps `deriveLegacyKey` (PBKDF2,
+210k) **solely to read pre-Argon2id v1 vaults** (`{ version: 1, salt, iv,
+ciphertext }`); never use it to write new data. `AppContext` owns lock state
+(`isLocked`, `isInitialized`) and the `setupPassword` / `unlock` / `lock` /
+`resetVault` actions. The derived AES key is **non-extractable and lives only in
+a ref — it is never cached**, so a refresh re-locks the vault and the master
+password must be re-entered (`saltRef` keeps the persistence effect's envelope
+in sync with the in-memory key). `unlock` is version-aware: a v1 vault is
+decrypted with PBKDF2 and then **transparently re-sealed as v2 under Argon2id**
+(fresh salt) on first unlock. `VaultGate` renders `LockScreen` until unlocked,
+then `Home`. The persistence effect in `Context.js` re-encrypts `credentials` on
+every change. Export decrypts to plaintext JSON; import parses plaintext JSON
+and is re-encrypted on save.
 
 ## Gotchas / dead code
 
 - `src/GlobalStore/LoadData.js` is broken, unused scaffolding (references undefined variables). Do not import it.
-- In `src/Utilities/Utilities.js`, only `mergeProductList` is wired up. `importData`/`getDownloadURL`/`higlightInList`/`readFile`/`writeFile` are dead or stubbed — `Options.js` defines its own import/export logic.
+- In `src/Utilities/Utilities.js`, only `mergeProductList` and `serializeForExport` are wired up. `importData`/`getDownloadURL`/`higlightInList` are dead — `Options.js` defines its own import/export logic.
 - `AddItemForm.getObject` still contains leftover `quantity`/`price` cart-like logic that doesn't map to the credential domain; tread carefully when changing form submission.
 - `src/Components/SettingsMenu.js` is unused dead code (imported nowhere) and still reads the legacy plaintext `credentials` key directly — do not wire it up without first updating it for the encrypted vault.

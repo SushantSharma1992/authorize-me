@@ -7,9 +7,6 @@ import {
   clearVault,
   readLegacyPlaintext,
   clearLegacyPlaintext,
-  cacheSessionKey,
-  readSessionKey,
-  clearSessionKey,
 } from "./vault";
 
 beforeEach(() => {
@@ -47,14 +44,6 @@ test("clearLegacyPlaintext removes the legacy key", () => {
   localStorage.setItem(LEGACY_KEY, JSON.stringify([{ id: 1 }]));
   clearLegacyPlaintext();
   expect(localStorage.getItem(LEGACY_KEY)).toBeNull();
-});
-
-test("session key cache round-trips and clears", () => {
-  expect(readSessionKey()).toBeNull();
-  cacheSessionKey("abc");
-  expect(readSessionKey()).toBe("abc");
-  clearSessionKey();
-  expect(readSessionKey()).toBeNull();
 });
 
 test("readEnvelope returns null on corrupt JSON instead of throwing", () => {

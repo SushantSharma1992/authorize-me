@@ -1,7 +1,21 @@
+import { argon2id } from "hash-wasm";
+
 const enc = new TextEncoder();
 const dec = new TextDecoder();
 
-const PBKDF2_ITERATIONS = 210000;
+// Iterations for the legacy PBKDF2 key. Only used to read v1 vaults so they
+// can be re-encrypted under Argon2id (see deriveLegacyKey / vault migration).
+const LEGACY_PBKDF2_ITERATIONS = 210000;
+
+// Argon2id parameters for new (and upgraded) vaults. Memory-hard, which
+// resists GPU/ASIC cracking far better than PBKDF2. These are persisted in the
+// vault envelope so a vault can always be re-derived with the params it used.
+export const ARGON2_PARAMS = {
+  parallelism: 1,
+  iterations: 3,
+  memorySize: 65536, // KiB == 64 MiB
+  hashLength: 32, // 256-bit AES key
+};
 
 export function generateSalt() {
   return crypto.getRandomValues(new Uint8Array(16));
@@ -25,7 +39,35 @@ export function base64ToBytes(b64) {
   return bytes;
 }
 
-export async function deriveKey(password, salt) {
+// Import raw key bytes as a non-extractable AES-GCM key. Non-extractable means
+// the key cannot be exported from memory (even by injected script), so it is
+// never cached anywhere — the vault re-derives it from the master password.
+async function importAesKey(rawBytes) {
+  return crypto.subtle.importKey(
+    "raw",
+    rawBytes,
+    { name: "AES-GCM", length: 256 },
+    false,
+    ["encrypt", "decrypt"]
+  );
+}
+
+export async function deriveKey(password, salt, params = ARGON2_PARAMS) {
+  const raw = await argon2id({
+    password,
+    salt,
+    parallelism: params.parallelism,
+    iterations: params.iterations,
+    memorySize: params.memorySize,
+    hashLength: params.hashLength,
+    outputType: "binary",
+  });
+  return importAesKey(raw);
+}
+
+// Legacy PBKDF2 derivation. Retained solely to decrypt pre-Argon2id (v1)
+// vaults during migration; never used to write new data.
+export async function deriveLegacyKey(password, salt) {
   const baseKey = await crypto.subtle.importKey(
     "raw",
     enc.encode(password),
@@ -34,10 +76,15 @@ export async function deriveKey(password, salt) {
     ["deriveKey"]
   );
   return crypto.subtle.deriveKey(
-    { name: "PBKDF2", salt, iterations: PBKDF2_ITERATIONS, hash: "SHA-256" },
+    {
+      name: "PBKDF2",
+      salt,
+      iterations: LEGACY_PBKDF2_ITERATIONS,
+      hash: "SHA-256",
+    },
     baseKey,
     { name: "AES-GCM", length: 256 },
-    true, // extractable: needed to cache the raw key for the tab session
+    false,
     ["encrypt", "decrypt"]
   );
 }
@@ -62,19 +109,4 @@ export async function decrypt({ iv, ciphertext }, key) {
     base64ToBytes(ciphertext)
   );
   return JSON.parse(dec.decode(plain));
-}
-
-export async function exportRawKey(key) {
-  const raw = await crypto.subtle.exportKey("raw", key);
-  return bytesToBase64(new Uint8Array(raw));
-}
-
-export async function importRawKey(b64) {
-  return crypto.subtle.importKey(
-    "raw",
-    base64ToBytes(b64),
-    { name: "AES-GCM", length: 256 },
-    true,
-    ["encrypt", "decrypt"]
-  );
 }

@@ -1,6 +1,5 @@
 export const VAULT_KEY = "authorize-me-vault";
 export const LEGACY_KEY = "credentials";
-export const SESSION_KEY = "authorize-me-session-key";
 
 export function isVaultInitialized() {
   return localStorage.getItem(VAULT_KEY) !== null;
@@ -37,16 +36,4 @@ export function readLegacyPlaintext() {
 
 export function clearLegacyPlaintext() {
   localStorage.removeItem(LEGACY_KEY);
-}
-
-export function cacheSessionKey(b64) {
-  sessionStorage.setItem(SESSION_KEY, b64);
-}
-
-export function readSessionKey() {
-  return sessionStorage.getItem(SESSION_KEY);
-}
-
-export function clearSessionKey() {
-  sessionStorage.removeItem(SESSION_KEY);
 }
