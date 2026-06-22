@@ -1,0 +1,52 @@
+import {
+  LEGACY_KEY,
+  VAULT_KEY,
+  isVaultInitialized,
+  readEnvelope,
+  writeEnvelope,
+  clearVault,
+  readLegacyPlaintext,
+  clearLegacyPlaintext,
+} from "./vault";
+
+beforeEach(() => {
+  localStorage.clear();
+  sessionStorage.clear();
+});
+
+test("isVaultInitialized reflects presence of an envelope", () => {
+  expect(isVaultInitialized()).toBe(false);
+  writeEnvelope({ version: 1, salt: "s", iv: "i", ciphertext: "c" });
+  expect(isVaultInitialized()).toBe(true);
+});
+
+test("writeEnvelope / readEnvelope round-trip", () => {
+  const env = { version: 1, salt: "s", iv: "i", ciphertext: "c" };
+  writeEnvelope(env);
+  expect(readEnvelope()).toEqual(env);
+});
+
+test("clearVault removes the envelope", () => {
+  writeEnvelope({ version: 1, salt: "s", iv: "i", ciphertext: "c" });
+  clearVault();
+  expect(isVaultInitialized()).toBe(false);
+});
+
+test("readLegacyPlaintext returns a non-empty array or null", () => {
+  expect(readLegacyPlaintext()).toBeNull();
+  localStorage.setItem(LEGACY_KEY, JSON.stringify([{ id: 1 }]));
+  expect(readLegacyPlaintext()).toEqual([{ id: 1 }]);
+  localStorage.setItem(LEGACY_KEY, JSON.stringify([]));
+  expect(readLegacyPlaintext()).toBeNull();
+});
+
+test("clearLegacyPlaintext removes the legacy key", () => {
+  localStorage.setItem(LEGACY_KEY, JSON.stringify([{ id: 1 }]));
+  clearLegacyPlaintext();
+  expect(localStorage.getItem(LEGACY_KEY)).toBeNull();
+});
+
+test("readEnvelope returns null on corrupt JSON instead of throwing", () => {
+  localStorage.setItem(VAULT_KEY, "{not-valid-json");
+  expect(readEnvelope()).toBeNull();
+});
