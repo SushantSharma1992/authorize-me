@@ -1,6 +1,3 @@
-function readFile(params) {}
-function writeFile(params) {}
-
 export const importData = (evt) => {
     const fileObj = evt.target.files[0];
     const reader = new FileReader();

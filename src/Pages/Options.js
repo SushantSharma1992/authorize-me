@@ -11,15 +11,12 @@ export default function Options() {
   const importButton = useRef();
   const { credentials } = useContext(AppContext);
   const { loadCredentials, clearCredentials } = useModifyCred();
-  let fileDownloadURL;
 
   useEffect(() => {
     if (downloadUrl) {
       downloadButton.current.click();
-      URL.revokeObjectURL(fileDownloadURL);
+      URL.revokeObjectURL(downloadUrl);
     }
-
-    return () => {};
   }, [downloadUrl]);
 
   const upload = (e) => {
@@ -49,8 +46,7 @@ export default function Options() {
     e.preventDefault();
     const output = serializeForExport(credentials);
     const blob = new Blob([output]);
-    fileDownloadURL = URL.createObjectURL(blob);
-    setDownloadUrl(fileDownloadURL);
+    setDownloadUrl(URL.createObjectURL(blob));
   };
 
   const itemArray = [
