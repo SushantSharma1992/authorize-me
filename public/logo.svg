@@ -1,0 +1,20 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="authorize-me vault">
+  <defs>
+    <linearGradient id="tile" x1="64" y1="48" x2="448" y2="464" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#20222C"/>
+      <stop offset="1" stop-color="#14151A"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="200" y1="150" x2="312" y2="380" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F0C95A"/>
+      <stop offset="1" stop-color="#E3B23C"/>
+    </linearGradient>
+  </defs>
+
+  <!-- vault tile -->
+  <rect x="24" y="24" width="464" height="464" rx="116" fill="url(#tile)"/>
+  <rect x="24.5" y="24.5" width="463" height="463" rx="115.5" fill="none" stroke="#E3B23C" stroke-opacity="0.22" stroke-width="3"/>
+
+  <!-- keyhole -->
+  <circle cx="256" cy="214" r="62" fill="url(#gold)"/>
+  <path d="M256 238 L300 360 Q302 372 290 372 L222 372 Q210 372 212 360 Z" fill="url(#gold)"/>
+</svg>
